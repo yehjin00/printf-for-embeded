@@ -1,9 +1,9 @@
 // ======================== Information ============================
-// ÀÓº£µğµå¿¡¼­ »ç¿ëÇÒ °ÍÀÌ±â¶§¹®¿¡ ¼ıÀÚ¸¸ Ãâ·ÂÇÏµµ·Ï ¸¸µé¾ú´Ù.
-// unsigned char, int, long ÀÇ ¹üÀ§¿¡ ¼ÓÇÏ´Â ¼ıÀÚ¸¦ ÀÔ·ÂÇßÀ» ¶§
-// ÀÌ¸¦ ¹®ÀÚ·Î Ãâ·ÂµÇµµ·Ï ÇÏ´Â ÇÔ¼ö funÀ» ¸¸µé¾ú´Ù.
+// ì„ë² ë””ë“œì—ì„œ ì‚¬ìš©í•  ê²ƒì´ê¸°ë•Œë¬¸ì— ìˆ«ìë§Œ ì¶œë ¥í•˜ë„ë¡ ë§Œë“¤ì—ˆë‹¤.
+// unsigned char, int, long ì˜ ë²”ìœ„ì— ì†í•˜ëŠ” ìˆ«ìë¥¼ ì…ë ¥í–ˆì„ ë•Œ
+// ì´ë¥¼ ë¬¸ìë¡œ ì¶œë ¥ë˜ë„ë¡ í•˜ëŠ” í•¨ìˆ˜ funì„ ë§Œë“¤ì—ˆë‹¤.
 
-// printf·Î ÀúÀåµÈ µ¥ÀÌÅÍ¸¦ È®ÀÎÇÏ±âÀ§ÇÏ¿© Çì´õÆÄÀÏÀ» »ç¿ë
+// printfë¡œ ì €ì¥ëœ ë°ì´í„°ë¥¼ í™•ì¸í•˜ê¸°ìœ„í•˜ì—¬ í—¤ë”íŒŒì¼ì„ ì‚¬ìš©
 #include<stdio.h>
 
 // ======================= Type definition ==========================
@@ -12,34 +12,34 @@ typedef unsigned int	tU16; // 0 ~ 65,535
 typedef unsigned long	tU32; // 0 ~ 4,294,967,295
 
 // ======================= Valuable definition ======================
-tU08 argindex=0;               // ÀÎÀÚÀÇ ÀÎµ¦½º
-tU08 dataindex=0;              // µ¥ÀÌÅÍ ÀÎµ¦½º
-tU08 format[100]={0};         // raw µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ ¹öÆÛ
-tU08 databuffer[100]={0};     // °¡°øÈÄ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÒ ¹öÆÛ
-void* argbuffer[10]={0};      // 10°³ÀÇ ÀÎÀÚ°ªÀÇ ÁÖ¼Ò¸¦ ÀúÀåÇÒ ¹öÆÛ
+tU08 argindex=0;               // ì¸ìì˜ ì¸ë±ìŠ¤
+tU08 dataindex=0;              // ë°ì´í„° ì¸ë±ìŠ¤
+tU08 format[100]={0};         // raw ë°ì´í„°ë¥¼ ì €ì¥í•  ë²„í¼
+tU08 databuffer[100]={0};     // ê°€ê³µí›„ ë°ì´í„°ë¥¼ ì €ì¥í•  ë²„í¼
+void* argbuffer[10]={0};      // 10ê°œì˜ ì¸ìê°’ì˜ ì£¼ì†Œë¥¼ ì €ì¥í•  ë²„í¼
 
 // ========================== Function ==============================
 
-// tU08À» ¹®ÀÚ·Î º¯È¯
+// tU08ì„ ë¬¸ìë¡œ ë³€í™˜
 void fun_1toC(){
-    tU08 h=*(tU08*)argbuffer[argindex]/100 + 0x30; // ¾Æ½ºÅ°ÄÚµå·Î ³ªÅ¸³»±âÀ§ÇØ 0x30À» ´õÇÏ¿© ¼ıÀÚ·Î ³ªÅ¸³½´Ù.
+    tU08 h=*(tU08*)argbuffer[argindex]/100 + 0x30; // ì•„ìŠ¤í‚¤ì½”ë“œë¡œ ë‚˜íƒ€ë‚´ê¸°ìœ„í•´ 0x30ì„ ë”í•˜ì—¬ ìˆ«ìë¡œ ë‚˜íƒ€ë‚¸ë‹¤.
     tU08 t=(*(tU08*)argbuffer[argindex]%100)/10 + 0x30;
     tU08 o=(*(tU08*)argbuffer[argindex]%100)%10 + 0x30;
 
-    // Ã³À½¼ıÀÚ°¡ 0ÀÌ ¾Æ´Ï¸é ¾Æ·¡ ¼ıÀÚ ´Ù Ãâ·ÂÇÏ±â
-    if(h!=0x30){            // h°¡ 0ÀÌ ¾Æ´Ò°æ¿ì h,t,o¸¦ ´Ù ÀúÀåÇÑ´Ù. 0À¸·Î ÇÏ¸é null·Î µé¾î°¡±â ¶§¹®¿¡ ¹®ÀÚÀÎ 0x30À¸·Î Áà¾ßÇÑ´Ù.
+    // ì²˜ìŒìˆ«ìê°€ 0ì´ ì•„ë‹ˆë©´ ì•„ë˜ ìˆ«ì ë‹¤ ì¶œë ¥í•˜ê¸°
+    if(h!=0x30){            // hê°€ 0ì´ ì•„ë‹ê²½ìš° h,t,oë¥¼ ë‹¤ ì €ì¥í•œë‹¤. 0ìœ¼ë¡œ í•˜ë©´ nullë¡œ ë“¤ì–´ê°€ê¸° ë•Œë¬¸ì— ë¬¸ìì¸ 0x30ìœ¼ë¡œ ì¤˜ì•¼í•œë‹¤.
         databuffer[dataindex++] = h;
         databuffer[dataindex++] = t;
     }
-    if(t){            // h°¡ 0ÀÏ °æ¿ì t,o¸¦ ÀúÀåÇÑ´Ù.
+    if(t!=0x30){            // hê°€ 0ì¼ ê²½ìš° t,oë¥¼ ì €ì¥í•œë‹¤.
         databuffer[dataindex++] = t;
     }
-    databuffer[dataindex++] = o; // h,t °¡ 0ÀÏ°æ¿ì o¸¸ ÀúÀåÇÑ´Ù.
+    databuffer[dataindex++] = o; // h,t ê°€ 0ì¼ê²½ìš° oë§Œ ì €ì¥í•œë‹¤.
 
-    argindex++; // ÇüÀ» º¯È¯ÇßÀ¸¸é ´ÙÀ½ argÀÇ °ªÀ» ¹Ş¾Æ¿À±âÀ§ÇØ °ªÀ» ÇÏ³ª Áõ°¡½ÃÅ²´Ù.
+    argindex++; // í˜•ì„ ë³€í™˜í–ˆìœ¼ë©´ ë‹¤ìŒ argì˜ ê°’ì„ ë°›ì•„ì˜¤ê¸°ìœ„í•´ ê°’ì„ í•˜ë‚˜ ì¦ê°€ì‹œí‚¨ë‹¤.
 }
 
-// tU16À» ¹®ÀÚ·Î º¯È¯
+// tU16ì„ ë¬¸ìë¡œ ë³€í™˜
 void fun_2toC(){
     tU16 tt=*(tU16*)argbuffer[argindex]/10000 + 0x30;
     tU16 ot=(*(tU16*)argbuffer[argindex]%10000)/1000 + 0x30;
@@ -58,11 +58,11 @@ void fun_2toC(){
         databuffer[dataindex++] = h;
         databuffer[dataindex++] = t;
     }
-    if(h!=0x30){            // h°¡ 0ÀÌ ¾Æ´Ò°æ¿ì h,t,o¸¦ ´Ù ÀúÀåÇÑ´Ù. 0À¸·Î ÇÏ¸é null·Î µé¾î°¡±â ¶§¹®¿¡ ¹®ÀÚÀÎ 0x30À¸·Î Áà¾ßÇÑ´Ù.
+    if(h!=0x30){            // hê°€ 0ì´ ì•„ë‹ê²½ìš° h,t,oë¥¼ ë‹¤ ì €ì¥í•œë‹¤. 0ìœ¼ë¡œ í•˜ë©´ nullë¡œ ë“¤ì–´ê°€ê¸° ë•Œë¬¸ì— ë¬¸ìì¸ 0x30ìœ¼ë¡œ ì¤˜ì•¼í•œë‹¤.
         databuffer[dataindex++] = h;
         databuffer[dataindex++] = t;
     }
-    if(t){            // h°¡ 0ÀÏ °æ¿ì t,o¸¦ ÀúÀåÇÑ´Ù.
+    if(t){            // hê°€ 0ì¼ ê²½ìš° t,oë¥¼ ì €ì¥í•œë‹¤.
         databuffer[dataindex++] = t;
     }
     databuffer[dataindex++] = o;
@@ -70,7 +70,7 @@ void fun_2toC(){
     argindex++;
 }
 
-// tU32¸¦ ¹®ÀÚ·Î º¯È¯
+// tU32ë¥¼ ë¬¸ìë¡œ ë³€í™˜
 void fun_4toC(){
     tU32 ob=*(tU32*)argbuffer[argindex]/1000000000 + 0x30;
     tU32 hm=(*(tU32*)argbuffer[argindex]%1000000000)/100000000 + 0x30;
@@ -153,19 +153,19 @@ void fun_4toC(){
     argindex++;
 }
 
-// ¹Ş¾Æ¿Â ÀÎÀÚÀÇ Çü º¯È¯ÇÏ±â
+// ë°›ì•„ì˜¨ ì¸ìì˜ í˜• ë³€í™˜í•˜ê¸°
 void fun_typeto(){
     tU08 index=0;
-    while(format[index]!=0){    // ÀÔ·ÂÇÑ µ¥ÀÌÅÍ°¡ nullÀÌ µÇ±â Àü±îÁö ¼öÇà
-        if(format[index]=='%'){ // %°¡ ¹ß°ßµÇ¸é
-            switch(format[++index]){ // %µÚ¿¡ °ªÀÌ 1,2,4ÀÎ°¡¿¡ µû¶ó Çüº¯È¯À» ÇÑ´Ù.
-            case '1': // 1ÀÏ °æ¿ì charÇüÀ» ¹®ÀÚ·Î º¯È¯
+    while(format[index]!=0){    // ì…ë ¥í•œ ë°ì´í„°ê°€ nullì´ ë˜ê¸° ì „ê¹Œì§€ ìˆ˜í–‰
+        if(format[index]=='%'){ // %ê°€ ë°œê²¬ë˜ë©´
+            switch(format[++index]){ // %ë’¤ì— ê°’ì´ 1,2,4ì¸ê°€ì— ë”°ë¼ í˜•ë³€í™˜ì„ í•œë‹¤.
+            case '1': // 1ì¼ ê²½ìš° charí˜•ì„ ë¬¸ìë¡œ ë³€í™˜
                 fun_1toC();
                 break;
-            case '2': // 2ÀÏ °æ¿ì intÇüÀ» ¹®ÀÚ·Î º¯È¯
+            case '2': // 2ì¼ ê²½ìš° intí˜•ì„ ë¬¸ìë¡œ ë³€í™˜
                 fun_2toC();
                 break;
-            case '4': // 4ÀÏ °æ¿ì longÇüÀ» ¹®ÀÚ·Î º¯È¯
+            case '4': // 4ì¼ ê²½ìš° longí˜•ì„ ë¬¸ìë¡œ ë³€í™˜
                 fun_4toC();
                 break;
             default:
@@ -173,16 +173,16 @@ void fun_typeto(){
             }
         }
         else{
-            databuffer[dataindex++]=format[index]; // %°¡ ¾Æ´Ñ µ¥ÀÌÅÍµéÀº databuffer¿¡ ±×´ë·Î ÀúÀå
+            databuffer[dataindex++]=format[index]; // %ê°€ ì•„ë‹Œ ë°ì´í„°ë“¤ì€ databufferì— ê·¸ëŒ€ë¡œ ì €ì¥
         }
-        index++; // format³»ÀÇ ´ÙÀ½ °ªÀ» ¹Ş¾Æ¿Â´Ù.
+        index++; // formatë‚´ì˜ ë‹¤ìŒ ê°’ì„ ë°›ì•„ì˜¨ë‹¤.
     }
 }
 
-// printfÀÇ ±â´ÉÀ» ÇÏ´Â ÇÔ¼ö
+// printfì˜ ê¸°ëŠ¥ì„ í•˜ëŠ” í•¨ìˆ˜
 tU08 fun(tU08* input_format, void* arg1, void*arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8, void* arg9, void* arg10){
-    argbuffer[0]=arg1; // argbuffer¿¡ ÇÏ³ª¾¿ arg¸¦ ÀúÀåÇÑ´Ù.
-    argbuffer[1]=arg2; // °ªÀÌ little endian stackÀ¸·Î ÀúÀåµÈ´Ù.
+    argbuffer[0]=arg1; // argbufferì— í•˜ë‚˜ì”© argë¥¼ ì €ì¥í•œë‹¤.
+    argbuffer[1]=arg2; // ê°’ì´ little endian stackìœ¼ë¡œ ì €ì¥ëœë‹¤.
     argbuffer[2]=arg3;
     argbuffer[3]=arg4;
     argbuffer[4]=arg5;
@@ -192,12 +192,12 @@ tU08 fun(tU08* input_format, void* arg1, void*arg2, void* arg3, void* arg4, void
     argbuffer[8]=arg9;
     argbuffer[9]=arg10;
 
-    for(int i=0;i<100;i++){ // input_formatÀ¸·Î µé¾î¿Â °ªµéÀ» ÇÏ³ª½Ï format¿¡ ÀúÀåÇÑ´Ù.
+    for(int i=0;i<100;i++){ // input_formatìœ¼ë¡œ ë“¤ì–´ì˜¨ ê°’ë“¤ì„ í•˜ë‚˜ì‹¹ formatì— ì €ì¥í•œë‹¤.
         format[i]=input_format[i];
     }
 
     fun_typeto();
-    return databuffer; // °¡°øµÈ µ¥ÀÌÅÍ¸¦ Ãâ·ÂÇÑ´Ù.
+    return databuffer; // ê°€ê³µëœ ë°ì´í„°ë¥¼ ì¶œë ¥í•œë‹¤.
 }
 
 // ================================ Main ============================
@@ -218,7 +218,7 @@ int main()
 
     fun("Hello %1 %1 %1 %1 %2 %2 %2 %4 %4 %4",&a1,&a2,&a3,&a4,&b1,&b2,&b3,&c1,&c2,&c3);
 
-    // µ¥ÀÌÅÍ°¡ Á¦´ë·Î ÀúÀåµÆ´ÂÁö printf·Î È®ÀÎÇÏ±â
+    // ë°ì´í„°ê°€ ì œëŒ€ë¡œ ì €ì¥ëëŠ”ì§€ printfë¡œ í™•ì¸í•˜ê¸°
     //printf("%s",databuffer);
     return 0;
 }
