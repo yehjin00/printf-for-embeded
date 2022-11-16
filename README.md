@@ -6,11 +6,11 @@ When you input numeric in a range of unsigned char or int or long, fun function 
 [Condition]
 1. Form of function : fun(”Hello %d”, &a),  print like Hello 123
 2. Using %1, %2, %4
-   %1 : tU08 to char
-   %2 : tU16 to char
-   %4 : tU32 to char
+   %1 : tU08 to char<br/>
+   %2 : tU16 to char<br/>
+   %4 : tU32 to char<br/>
 
-Type definition<br/>
+[Type definition]<br/>
 unsigned char = tU08<br/>
 unsigned int = tU16<br/>
 unsigned long = tU32
