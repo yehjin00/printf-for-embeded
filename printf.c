@@ -62,7 +62,7 @@ void fun_2toC(){
         databuffer[dataindex++] = h;
         databuffer[dataindex++] = t;
     }
-    if(t){            
+    if(t!=0x30){            
         databuffer[dataindex++] = t;
     }
     databuffer[dataindex++] = o;
