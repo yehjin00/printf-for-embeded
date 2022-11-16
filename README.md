@@ -10,7 +10,7 @@ When you input numeric in a range of unsigned char or int or long, fun function 
    %2 : tU16 to char
    %4 : tU32 to char
 
-**\n
-unsigned char = tU08\n
-unsigned int = tU16\n
+**<br/>
+unsigned char = tU08<br/>
+unsigned int = tU16<br/>
 unsigned long = tU32
