@@ -12,8 +12,8 @@ typedef unsigned int	tU16; // 0 ~ 65,535
 typedef unsigned long	tU32; // 0 ~ 4,294,967,295
 
 // ======================= Valuable definition ======================
-tU08 argindex=0;               // 인자의 인덱스
-tU08 dataindex=0;              // 데이터 인덱스
+tU08 argindex=0;              // 인자의 인덱스
+tU08 dataindex=0;             // 데이터 인덱스
 tU08 format[100]={0};         // raw 데이터를 저장할 버퍼
 tU08 databuffer[100]={0};     // 가공후 데이터를 저장할 버퍼
 void* argbuffer[10]={0};      // 10개의 인자값의 주소를 저장할 버퍼
@@ -22,7 +22,7 @@ void* argbuffer[10]={0};      // 10개의 인자값의 주소를 저장할 버�
 
 // tU08을 문자로 변환
 void fun_1toC(){
-    tU08 h=*(tU08*)argbuffer[argindex]/100 + 0x30; // 아스키코드로 나타내기위해 0x30을 더하여 숫자로 나타낸다.
+    tU08 h=*(tU08*)argbuffer[argindex]/100 + 0x30; // 숫자를 문자로 출력하기위해 0x30을 더한다.
     tU08 t=(*(tU08*)argbuffer[argindex]%100)/10 + 0x30;
     tU08 o=(*(tU08*)argbuffer[argindex]%100)%10 + 0x30;
 
@@ -36,7 +36,7 @@ void fun_1toC(){
     }
     databuffer[dataindex++] = o;
 
-    argindex++; // 형을 변환했으면 다음 arg의 값을 받아오기위해 값을 하나 증가시킨다.
+    argindex++; // 형을 변환했으면 다음 arg의 값을 받아오기위해 index값을 하나 증가시킨다.
 }
 
 // tU16을 문자로 변환
@@ -82,7 +82,6 @@ void fun_4toC(){
     tU32 h=(((((((*(tU32*)argbuffer[argindex]%1000000000)%1000000000)%10000000)%1000000)%100000)%10000)%1000)/100 + 0x30;
     tU32 t=((((((((*(tU32*)argbuffer[argindex]%1000000000)%1000000000)%10000000)%1000000)%100000)%10000)%1000)%100)/10 + 0x30;
     tU32 o=((((((((*(tU32*)argbuffer[argindex]%1000000000)%1000000000)%10000000)%1000000)%100000)%10000)%1000)%100)%10 + 0x30;
-
 
     if(ob!=0x30){
         databuffer[dataindex++] = ob;
@@ -156,8 +155,8 @@ void fun_4toC(){
 // 받아온 인자의 형 변환하기
 void fun_typeto(){
     tU08 index=0;
-    while(format[index]!=0){    // 입력한 데이터가 null이 되기 전까지 수행
-        if(format[index]=='%'){ // %가 발견되면
+    while(format[index]!=0){         // 입력한 데이터가 null이 되기 전까지 수행
+        if(format[index]=='%'){      // %가 발견되면
             switch(format[++index]){ // %뒤에 값이 1,2,4인가에 따라 형변환을 한다.
             case '1': // 1일 경우 char형을 문자로 변환
                 fun_1toC();
@@ -182,7 +181,7 @@ void fun_typeto(){
 // printf의 기능을 하는 함수
 tU08 fun(tU08* input_format, void* arg1, void*arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8, void* arg9, void* arg10){
     argbuffer[0]=arg1; // argbuffer에 하나씩 arg를 저장한다.
-    argbuffer[1]=arg2; // 값이 little endian stack으로 저장된다.
+    argbuffer[1]=arg2; // 값이 stack의 little endian 방식으로 저장된다.
     argbuffer[2]=arg3;
     argbuffer[3]=arg4;
     argbuffer[4]=arg5;
