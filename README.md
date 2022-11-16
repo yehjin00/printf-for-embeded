@@ -1,6 +1,6 @@
 # printf-for-embeded
 
-Input only numeric because of using it for embedded.\n
+Input only numeric because of using it for embedded. \n
 When you input numeric in a range of unsigned char or int or long, fun function returns it to character.
 
 [Condition]
