@@ -27,14 +27,14 @@ void fun_1toC(){
     tU08 o=(*(tU08*)argbuffer[argindex]%100)%10 + 0x30;
 
     // 처음숫자가 0이 아니면 아래 숫자 다 출력하기
-    if(h!=0x30){            // h가 0이 아닐경우 h,t,o를 다 저장한다. 0으로 하면 null로 들어가기 때문에 문자인 0x30으로 줘야한다.
+    if(h!=0x30){            
         databuffer[dataindex++] = h;
         databuffer[dataindex++] = t;
     }
-    if(t!=0x30){            // h가 0일 경우 t,o를 저장한다.
+    if(t!=0x30){           
         databuffer[dataindex++] = t;
     }
-    databuffer[dataindex++] = o; // h,t 가 0일경우 o만 저장한다.
+    databuffer[dataindex++] = o;
 
     argindex++; // 형을 변환했으면 다음 arg의 값을 받아오기위해 값을 하나 증가시킨다.
 }
@@ -58,11 +58,11 @@ void fun_2toC(){
         databuffer[dataindex++] = h;
         databuffer[dataindex++] = t;
     }
-    if(h!=0x30){            // h가 0이 아닐경우 h,t,o를 다 저장한다. 0으로 하면 null로 들어가기 때문에 문자인 0x30으로 줘야한다.
+    if(h!=0x30){           
         databuffer[dataindex++] = h;
         databuffer[dataindex++] = t;
     }
-    if(t){            // h가 0일 경우 t,o를 저장한다.
+    if(t){            
         databuffer[dataindex++] = t;
     }
     databuffer[dataindex++] = o;
